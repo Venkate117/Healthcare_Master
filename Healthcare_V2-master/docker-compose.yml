@@ -1,0 +1,16 @@
+version: '3'
+services:
+  eureka-server:
+    image: eureka.registry
+    ports:
+     - "8006:8006"
+  service:
+    image: service:0.0.1-SNAPSHOT
+    depends_on:
+     - eureka-server
+  zuul-server:
+    image: zuul:0.0.1-SNAPSHOT
+    depends_on:
+     - eureka-server
+    ports:
+     - "8005:8005"
